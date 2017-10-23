@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<items 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			xsi:noNamespaceSchemaLocation="items.xsd">
+
+	<enumtypes>
+		<enumtype code="IdocType" dynamic="true">
+			<value code="ADR2MAS03"/>
+			<value code="DEBMAS06"/>
+			<value code="DEBMAS07"/>
+		</enumtype>
+	</enumtypes>
+
+	<itemtypes>
+
+		<itemtype code="Idoc">
+			<deployment table="Idocs" typecode="20006"/>
+			<attributes>
+
+				<attribute qualifier="type" type="IdocType">
+					<description>Type of Idoc</description>
+					<modifiers read="true" write="true" search="true" optional="true"/>
+					<persistence type="property"/>
+				</attribute>
+
+				<attribute qualifier="content" type="java.lang.String">
+					<description>Idoc content</description>
+					<modifiers read="true" write="true" search="true" optional="true"/>
+					<persistence type="property">
+						<columntype>
+							<value>CLOB</value>
+						</columntype>
+					</persistence>
+				</attribute>
+
+				<attribute qualifier="createdTime" type="java.util.Date">
+					<description>Time of creation</description>
+					<modifiers read="true" write="true" search="true" optional="true"/>
+					<persistence type="property"/>
+				</attribute>
+
+			</attributes>
+		</itemtype>
+
+	</itemtypes>
+</items>

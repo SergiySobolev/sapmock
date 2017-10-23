@@ -1,0 +1,39 @@
+package com.zaelab.sapmock.endpoint;
+
+
+import com.zaelab.sapmock.enums.IdocType;
+import com.zaelab.sapmock.service.SapmockService;
+import com.zaelab.sapmock.source.SapmockSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.ws.server.endpoint.PayloadEndpoint;
+
+import javax.xml.transform.Source;
+import javax.xml.transform.dom.DOMSource;
+
+
+@Component
+public class DEBMAS06Endpoint implements PayloadEndpoint {
+
+    private static final Logger LOG = LoggerFactory.getLogger(DEBMAS06Endpoint.class);
+
+    private SapmockService sapmockService;
+
+    @Autowired
+    public DEBMAS06Endpoint(SapmockService sapmockService) {
+        this.sapmockService = sapmockService;
+    }
+
+
+    @Override
+    public Source invoke(Source source) throws Exception {
+        SapmockSource sapmockSource = new SapmockSource((DOMSource)source);
+        String content = sapmockSource.toString();
+        sapmockService.createIdoc(IdocType.DEBMAS06, content);
+        LOG.info("DEBMAS06 idoc = [{}]", content);
+        return source;
+    }
+
+}

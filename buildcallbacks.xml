@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project name="sapmock_buildcallbacks">
+
+	<macrodef name="sapmock_before_ear">
+		<sequential>
+
+		</sequential>
+	</macrodef>
+
+</project>
